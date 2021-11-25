@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+  <template type="admin" title="payment_profile_paytr" version_id="100012" version_string="1.1.2"><![CDATA[
+    
+      <xf:textboxrow name="options[merchant_id]" value="{$profile.options.merchant_id}" label="{{ phrase('paytr_merchant_id') }}" />
+      <xf:textboxrow name="options[merchant_key]" value="{$profile.options.merchant_key}" label="{{ phrase('paytr_merchant_key') }}" />
+      <xf:textboxrow name="options[merchant_salt]" value="{$profile.options.merchant_salt}" label="{{ phrase('paytr_merchant_salt') }}" />
+      <xf:checkboxrow hint="{{ phrase('paytr_test_mode_hint') }}" label="{{ phrase('paytr_test_mode') }}">
+        <xf:option name="options[test_mode]" selected="{$profile.options.test_mode}">
+            {{ phrase('paytr_test_mode_active') }}
+        </xf:option>
+      </xf:checkboxrow>
+      <xf:selectrow hint="{{ phrase('paytr_language_hint') }}" name="options[language]" value="{$profile.options.language}" label="{{ phrase('paytr_language') }}">
+        <xf:option value="default">{{ phrase('paytr_system_default') }}</xf:option>
+        <xf:option value="turkish">{{ phrase('paytr_turkish') }}</xf:option>
+        <xf:option value="english">{{ phrase('paytr_english') }}</xf:option>
+      </xf:selectrow>
+      <xf:selectrow hint="{{ phrase('paytr_iframe_type_hint') }}" name="options[iframe_type]" value="{$profile.options.iframe_type}" label="{{ phrase('paytr_iframe_type') }}">
+        <xf:option value="self_hosted">{{ phrase('paytr_iframe_self_hosted') }}</xf:option>
+        <xf:option value="paytr_hosted">{{ phrase('paytr_iframe_paytr_hosted') }}</xf:option>
+      </xf:selectrow>
+      <xf:selectrow hint="{{ phrase('paytr_installment_hint') }}" name="options[installment]" value="{$profile.options.installment}" label="{{ phrase('paytr_installment') }}">
+        <xf:option value="0">{{ phrase('paytr_installment_all') }}</xf:option>
+        <xf:option value="1">{{ phrase('paytr_installment_1') }}</xf:option>
+        <xf:option value="2">{{ phrase('paytr_installment_2') }}</xf:option>
+        <xf:option value="3">{{ phrase('paytr_installment_3') }}</xf:option>
+        <xf:option value="4">{{ phrase('paytr_installment_4') }}</xf:option>
+        <xf:option value="5">{{ phrase('paytr_installment_5') }}</xf:option>
+        <xf:option value="6">{{ phrase('paytr_installment_6') }}</xf:option>
+        <xf:option value="7">{{ phrase('paytr_installment_7') }}</xf:option>
+        <xf:option value="8">{{ phrase('paytr_installment_8') }}</xf:option>
+        <xf:option value="9">{{ phrase('paytr_installment_9') }}</xf:option>
+        <xf:option value="10">{{ phrase('paytr_installment_10') }}</xf:option>
+        <xf:option value="11">{{ phrase('paytr_installment_11') }}</xf:option>
+        <xf:option value="12">{{ phrase('paytr_installment_12') }}</xf:option>
+      </xf:selectrow>
+      <xf:formrow hint="{{ phrase('paytr_callback_url_hint') }}" label="{{ phrase('paytr_callback_url') }}">
+          <div class="formRow-explain">
+              {{ phrase('paytr_option_explain', {'boardUrl': $xf.options.boardUrl}) }}
+          </div>
+      </xf:formrow>
+      <xf:textarearow hint="{{ phrase('paytr_phone_number_description_hint') }}" name="options[phone_number_description]" value="{$profile.options.phone_number_description}" label="{{ phrase('paytr_phone_number_description') }}" />
+      <xf:textarearow hint="{{ phrase('paytr_address_description_hint') }}"  name="options[address_description]" value="{$profile.options.address_description}" label="{{ phrase('paytr_address_description') }}" />
+      <xf:textboxrow name="options[credit_card_title]" value="{$profile.options.credit_card_title}" label="{{ phrase('paytr_credit_card_title') }}" hint="{{ phrase('paytr_credit_card_title_hint') }}"/>
+      <xf:textboxrow name="options[paytr_money_order_eft_title]" value="{$profile.options.paytr_money_order_eft_title}" label="{{ phrase('paytr_money_order_eft_title') }}" hint="{{ phrase('paytr_money_order_eft_title_hint') }}"/>
+      <div class="blockMessage blockMessage--important" style="margin:0; border-bottom:0; padding:5px;">
+        <ul>
+          <li>API Bilgilerinizi <a href="https://www.paytr.com/magaza/bilgi" target="_blank">www.paytr.com/magaza/bilgi</a> adresine tıklayarak alabilirsiniz.</li>
+          <li>Bildirim URL (Callback URL) ayarını <a href="https://www.paytr.com/magaza/ayarlar" target="_blank">www.paytr.com/magaza/ayarlar</a> adresine tıklayarak yapabilirsiniz.</li>
+        </ul>
+      </div>
+  ]]></template>
+  <template type="public" title="payment_initiate_paytr" version_id="100014" version_string="1.1.4"><![CDATA[
+  <xf:css src="payment_initiate.less" />
+  <xf:title>{{ $paytr_display_title }}</xf:title>
+  <xf:if is="!$paytr_error_message">
+    <xf:radiorow name="navigation_type_id" value="1" label="{{ phrase('paytr_payment_type') }}">
+        <xf:foreach loop="$typeHandlers" key="$type" value="$handler">
+            <xf:option value="{$type}" data-xf-init="disabler" data-container=".js-navTypeForm--{$type}" data-hide="true">{{ $handler }}</xf:option>
+        </xf:foreach>
+    </xf:radiorow>
+    <hr class="formRowSep" />
+    <xf:foreach loop="$typeHandlers" key="$type" value="$handler">
+        <div class="js-navTypeForm js-navTypeForm--{$type}">
+          <xf:if is="$type === 1">
+            <xf:form action="{{ $iframe_type === 'self_hosted' ? link('paytr/process') : 'https://www.paytr.com/odeme/guvenli' }}" class="block block--paymentInitiate">
+              <xf:hiddenval name="merchant_id">{$paytr->merchant_id}</xf:hiddenval>
+              <xf:hiddenval name="user_ip">{$paytr->user_ip}</xf:hiddenval>
+              <xf:hiddenval name="merchant_oid">{$paytr->merchant_oid}</xf:hiddenval>
+              <xf:hiddenval name="email">{$paytr->email}</xf:hiddenval>
+              <xf:hiddenval name="payment_amount">{$paytr->payment_amount}</xf:hiddenval>
+              <xf:hiddenval name="paytr_token">{$paytr->paytr_token}</xf:hiddenval>
+              <xf:hiddenval name="user_basket">{$paytr->user_basket}</xf:hiddenval>
+              <xf:hiddenval name="debug_on">{$paytr->debug_on}</xf:hiddenval>
+              <xf:hiddenval name="no_installment">{$paytr->no_installment}</xf:hiddenval>
+              <xf:hiddenval name="max_installment">{$paytr->max_installment}</xf:hiddenval>
+              <xf:hiddenval name="user_name">{$paytr->user_name}</xf:hiddenval>
+              <xf:hiddenval name="merchant_ok_url">{$paytr->merchant_ok_url}</xf:hiddenval>
+              <xf:hiddenval name="merchant_fail_url">{$paytr->merchant_fail_url}</xf:hiddenval>
+              <xf:hiddenval name="timeout_limit">30</xf:hiddenval>
+              <xf:hiddenval name="currency">{$paytr->currency}</xf:hiddenval>
+              <xf:hiddenval name="test_mode">{$paytr->test_mode}</xf:hiddenval>
+              <xf:hiddenval name="lang">{$paytr->lang}</xf:hiddenval>
+              <xf:hiddenval name="request_key">{$paytr_request_key}</xf:hiddenval>
+              <xf:hiddenval name="display_title">{$paytr_display_title}</xf:hiddenval>
+              <div class="block-container">
+                <div class="block-body">
+                  <xf:formrow controlid="element">
+                      <div class="formRow-explain">{{ phrase('payments_processed_securely_by_x', {'link': 'https://www.paytr.com', 'provider': 'PayTR'}) }}</div>
+                  </xf:formrow>
+                  <xf:textboxrow label="{{ phrase('cell_mobile_phone_number') }}" name="user_phone" explain="{$phone_number_description}" pattern="^[0-9]*$" placeholder="05012345678" minlength="11" maxlength="15" required="required"/>
+                  <xf:textboxrow label="{{ phrase('paytr_address') }}" name="user_address" explain="{$address_description}" required="required"/>
+                  <xf:submitrow icon="payment" submit="{{ phrase('pay_x', {'cost': $cost|currency($currency)}) }}" />
+                </div>
+              </div>
+            </xf:form>
+          <xf:else />
+            <xf:form action="{{ link('paytr/process') }}" class="block block--paymentInitiate">
+              <xf:hiddenval name="merchant_id">{$paytr_eft->merchant_id}</xf:hiddenval>
+              <xf:hiddenval name="user_ip">{$paytr_eft->user_ip}</xf:hiddenval>
+              <xf:hiddenval name="merchant_oid">{$paytr_eft->merchant_oid}</xf:hiddenval>
+              <xf:hiddenval name="email">{$paytr_eft->email}</xf:hiddenval>
+              <xf:hiddenval name="payment_amount">{$paytr_eft->payment_amount}</xf:hiddenval>
+              <xf:hiddenval name="paytr_token">{$paytr_eft->paytr_token}</xf:hiddenval>
+              <xf:hiddenval name="debug_on">{$paytr_eft->debug_on}</xf:hiddenval>
+              <xf:hiddenval name="timeout_limit">30</xf:hiddenval>
+              <xf:hiddenval name="test_mode">{$paytr_eft->test_mode}</xf:hiddenval>
+              <xf:hiddenval name="payment_type">eft</xf:hiddenval>
+              <xf:hiddenval name="request_key">{$paytr_request_key}</xf:hiddenval>
+              <xf:hiddenval name="display_title">{$paytr_display_title}</xf:hiddenval>
+              <div class="block-container">
+                <div class="block-body">
+                  <xf:submitrow icon="payment" submit="{{ phrase('pay_x', {'cost': $cost|currency($currency)}) }}" />
+                </div>
+              </div>
+            </xf:form>
+          </xf:if>
+        </div>
+    </xf:foreach>
+  <xf:else />
+    <div class="blockMessage blockMessage--important" style="margin:0; border-bottom:0; padding:15px;">
+      {$paytr_error_message}
+    </div>
+  </xf:if>
+
+]]></template>
+  <template type="public" title="paytr_payment_process" version_id="100014" version_string="1.1.4"><![CDATA[
+        <xf:title>{{ $display_title }}</xf:title>
+        <xf:breadcrumb href="{{ link('account/upgrades', true) }}">{{ phrase('manage_your_account_upgrades') }}</xf:breadcrumb>
+        <script src="https://www.paytr.com/js/iframeResizer.min.js"></script>
+        <iframe src="{{ $iframe_token }}" id="paytriframe" frameborder="0" scrolling="no" style="width: 100%;"></iframe>
+	    <script>iFrameResize({},'#paytriframe');</script>
+  ]]></template>
+</templates>

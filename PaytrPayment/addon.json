@@ -1,0 +1,16 @@
+{
+    "legacy_addon_id": "PaytrPayment",
+    "title": "PayTR Virtual Pos iFrame API",
+    "description": "PAYTR, is a service which provides the website owners a way to get secured online payments from websites in a fast and simple way with the help of PCI-DSS Level 1 Service Provider adapted technical infrastructure and experienced staff.",
+    "version_id": 100015,
+    "version_string": "1.1.5",
+    "dev": "PayTR Ödeme ve Elektronik Para Kuruluşu A.Ş.",
+    "dev_url": "https://www.paytr.com",
+    "faq_url": "https://www.paytr.com/sikca-sorulan-sorular",
+    "support_url": "https://www.paytr.com/iletisim",
+    "extra_urls": {
+        "Paytr": "https://www.paytr.com"
+    },
+    "require": [],
+    "icon": "icon.png"
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phrases>
+  <phrase title="merchant_id_or_merchant_key_or_merchant_salt_required" version_id="100012" version_string="1.1.2"><![CDATA[Merchant ID, Merchant Key, Merchant Salt Required]]></phrase>
+  <phrase title="paytr_address" version_id="100012" version_string="1.1.2"><![CDATA[Address]]></phrase>
+  <phrase title="paytr_address_description" version_id="100012" version_string="1.1.2"><![CDATA[Address Description]]></phrase>
+  <phrase title="paytr_address_description_hint" version_id="100012" version_string="1.1.2"><![CDATA[Adres girilen kısımda gösterilecek uyarı.]]></phrase>
+  <phrase title="paytr_callback_url" version_id="100012" version_string="1.1.2"><![CDATA[Callback URL]]></phrase>
+  <phrase title="paytr_callback_url_hint" version_id="100012" version_string="1.1.2"><![CDATA[Bildirim URL]]></phrase>
+  <phrase title="paytr_credit_card_title" version_id="100012" version_string="1.1.2"><![CDATA[Credit Card Title]]></phrase>
+  <phrase title="paytr_credit_card_title_hint" version_id="100012" version_string="1.1.2"><![CDATA[Kredi Kartı Başlığı (Örn. Kredi Kartı İle Öde)]]></phrase>
+  <phrase title="paytr_currency_error" version_id="100012" version_string="1.1.2"><![CDATA[This currency is not supported.]]></phrase>
+  <phrase title="paytr_english" version_id="100012" version_string="1.1.2"><![CDATA[English]]></phrase>
+  <phrase title="paytr_iframe_paytr_hosted" version_id="100012" version_string="1.1.2"><![CDATA[PayTR Hosted (Ödeme Aşamalarını PayTR Sitesinde Tamamlasın)]]></phrase>
+  <phrase title="paytr_iframe_self_hosted" version_id="100012" version_string="1.1.2"><![CDATA[Self Hosted (Ödeme Aşamalarını Sitede Tamamlasın)]]></phrase>
+  <phrase title="paytr_iframe_type" version_id="100012" version_string="1.1.2"><![CDATA[IFrame Type]]></phrase>
+  <phrase title="paytr_iframe_type_hint" version_id="100012" version_string="1.1.2"><![CDATA[IFrame API Nasıl Çalışsın?]]></phrase>
+  <phrase title="paytr_installment" version_id="100012" version_string="1.1.2"><![CDATA[Installment Options]]></phrase>
+  <phrase title="paytr_installment_1" version_id="100012" version_string="1.1.2"><![CDATA[Single Payment]]></phrase>
+  <phrase title="paytr_installment_10" version_id="100012" version_string="1.1.2"><![CDATA[Up To 10 Installments]]></phrase>
+  <phrase title="paytr_installment_11" version_id="100012" version_string="1.1.2"><![CDATA[Up To 11 Installments]]></phrase>
+  <phrase title="paytr_installment_12" version_id="100012" version_string="1.1.2"><![CDATA[Up To 12 Installments]]></phrase>
+  <phrase title="paytr_installment_2" version_id="100012" version_string="1.1.2"><![CDATA[Up To 2 Installments]]></phrase>
+  <phrase title="paytr_installment_3" version_id="100012" version_string="1.1.2"><![CDATA[Up To 3 Installments]]></phrase>
+  <phrase title="paytr_installment_4" version_id="100012" version_string="1.1.2"><![CDATA[Up To 4 Installments]]></phrase>
+  <phrase title="paytr_installment_5" version_id="100012" version_string="1.1.2"><![CDATA[Up To 5 Installments]]></phrase>
+  <phrase title="paytr_installment_6" version_id="100012" version_string="1.1.2"><![CDATA[Up To 6 Installments]]></phrase>
+  <phrase title="paytr_installment_7" version_id="100012" version_string="1.1.2"><![CDATA[Up To 7 Installments]]></phrase>
+  <phrase title="paytr_installment_8" version_id="100012" version_string="1.1.2"><![CDATA[Up To 8 Installments]]></phrase>
+  <phrase title="paytr_installment_9" version_id="100012" version_string="1.1.2"><![CDATA[Up To 9 Installments]]></phrase>
+  <phrase title="paytr_installment_all" version_id="100012" version_string="1.1.2"><![CDATA[All Installment Options]]></phrase>
+  <phrase title="paytr_installment_hint" version_id="100012" version_string="1.1.2"><![CDATA[Taksit Seçenekleri]]></phrase>
+  <phrase title="paytr_language" version_id="100012" version_string="1.1.2"><![CDATA[PayTR iFrame Language]]></phrase>
+  <phrase title="paytr_language_hint" version_id="100012" version_string="1.1.2"><![CDATA[Ödeme Sayfası Dil Seçeneği]]></phrase>
+  <phrase title="paytr_merchant_id" version_id="100012" version_string="1.1.2"><![CDATA[Merchant ID]]></phrase>
+  <phrase title="paytr_merchant_key" version_id="100012" version_string="1.1.2"><![CDATA[Merchant Key]]></phrase>
+  <phrase title="paytr_merchant_salt" version_id="100012" version_string="1.1.2"><![CDATA[Merchant Salt]]></phrase>
+  <phrase title="paytr_money_order_eft_title" version_id="100012" version_string="1.1.2"><![CDATA[Money Order / EFT Title]]></phrase>
+  <phrase title="paytr_money_order_eft_title_hint" version_id="100012" version_string="1.1.2"><![CDATA[Havale / EFT Başlığı (Örn. Havale / EFT İle Öde)]]></phrase>
+  <phrase title="paytr_option_explain" version_id="100012" version_string="1.1.2"><![CDATA[{boardUrl}/payment_callback.php?_xfProvider=paytr]]></phrase>
+  <phrase title="paytr_payment_type" version_id="100012" version_string="1.1.2"><![CDATA[Payment Type]]></phrase>
+  <phrase title="paytr_phone_number_description" version_id="100012" version_string="1.1.2"><![CDATA[Phone Number Description]]></phrase>
+  <phrase title="paytr_phone_number_description_hint" version_id="100012" version_string="1.1.2"><![CDATA[Telefon numarası girilen kısımda gösterilecek uyarı.]]></phrase>
+  <phrase title="paytr_system_default" version_id="100012" version_string="1.1.2"><![CDATA[System Default]]></phrase>
+  <phrase title="paytr_test_mode" version_id="100012" version_string="1.1.2"><![CDATA[Test Mode]]></phrase>
+  <phrase title="paytr_test_mode_active" version_id="100012" version_string="1.1.2"><![CDATA[Active]]></phrase>
+  <phrase title="paytr_test_mode_hint" version_id="100012" version_string="1.1.2"><![CDATA[Test Modu]]></phrase>
+  <phrase title="paytr_title" version_id="100012" version_string="1.1.2"><![CDATA[PayTR]]></phrase>
+  <phrase title="paytr_turkish" version_id="100012" version_string="1.1.2"><![CDATA[Turkish]]></phrase>
+</phrases>
